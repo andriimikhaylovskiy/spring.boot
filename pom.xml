@@ -45,6 +45,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.4.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>6.1.4</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -70,6 +80,7 @@
 					<consoleOutput>true</consoleOutput>
 					<failsOnError>true</failsOnError>
 					<linkXRef>false</linkXRef>
+					<sourceDirectories>src</sourceDirectories>
 				</configuration>
 			</plugin>
 		</plugins>
