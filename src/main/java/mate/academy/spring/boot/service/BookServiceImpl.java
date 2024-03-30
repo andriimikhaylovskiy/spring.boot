@@ -41,4 +41,9 @@ public class BookServiceImpl implements BookService {
     public BookDto createBook(CreateBookRequestDto bookDto) {
         throw new UnsupportedOperationException("Method not implemented");
     }
+
+    @Override
+    public void deleteById(Long id) {
+        bookRepository.deleteById(id);
+    }
 }
