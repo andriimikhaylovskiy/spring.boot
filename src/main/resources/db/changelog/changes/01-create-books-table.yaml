@@ -1,4 +1,4 @@
-databaseChangelog:
+databaseChangeLog:
   - changeSet:
       id: create-books-table
       author: sa
@@ -44,4 +44,3 @@ databaseChangelog:
                   name: isDeleted
                   type: boolean
                   defaultValue: false
-
