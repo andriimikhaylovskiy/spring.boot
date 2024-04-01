@@ -2,6 +2,7 @@ package mate.academy.spring.boot.service;
 
 import java.util.List;
 import mate.academy.spring.boot.dto.BookDto;
+import mate.academy.spring.boot.dto.BookSearchParametersDto;
 import mate.academy.spring.boot.dto.CreateBookRequestDto;
 import mate.academy.spring.boot.model.Book;
 import mate.academy.spring.boot.repository.BookRepository;
@@ -45,5 +46,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public void deleteById(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    @Override
+    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
+        return null;
     }
 }
