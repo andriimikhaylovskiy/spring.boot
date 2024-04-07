@@ -15,4 +15,6 @@ public interface BookMapper {
     Book createBookRequestDtoToBook(CreateBookRequestDto dto);
 
     BookDto bookToBookDto(Book book);
+
+    <R> R toDto(Book book);
 }

@@ -1,6 +1,8 @@
 package mate.academy.spring.boot.controller;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.spring.boot.dto.BookDto;
 import mate.academy.spring.boot.dto.BookSearchParametersDto;
 import mate.academy.spring.boot.dto.CreateBookRequestDto;
@@ -47,8 +49,14 @@ public class BookController {
         return bookService.createBook(bookDto);
     }
 
-    @GetMapping("/api/books/search")
+    @GetMapping("/search")
     public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
-        return bookService.searchBooks(searchParameters);
+        List<Object> foundBooks = Collections.singletonList(
+                bookService.searchBooks(searchParameters));
+        List<BookDto> bookDtos = foundBooks.stream()
+                .map(book -> (BookDto) book) // Приведення типу
+                .collect(Collectors.toList());
+        return bookDtos;
     }
+
 }
