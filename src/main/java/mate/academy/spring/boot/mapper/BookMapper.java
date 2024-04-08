@@ -16,5 +16,7 @@ public interface BookMapper {
 
     BookDto bookToBookDto(Book book);
 
-    <R> R toDto(Book book);
+    default BookDto toDto(Book book) {
+        return bookToBookDto(book);
+    }
 }

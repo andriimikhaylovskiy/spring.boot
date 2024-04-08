@@ -53,7 +53,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Object> searchBooks(BookSearchParametersDto searchParameters) {
+    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
         List<Book> foundBooks = bookRepository
                 .findByTitleAndAuthorAndIsbnAndPriceAndDescriptionAndCoverImageContaining(
                 searchParameters.getTitle(),
