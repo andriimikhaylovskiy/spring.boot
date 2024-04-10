@@ -1,10 +1,9 @@
 package mate.academy.spring.boot.service;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import mate.academy.spring.boot.dto.BookDto;
-import mate.academy.spring.boot.dto.BookSearchParametres;
+import mate.academy.spring.boot.dto.BookSearchParametersDto;
 import mate.academy.spring.boot.dto.CreateBookRequestDto;
 import mate.academy.spring.boot.model.Book;
 import mate.academy.spring.boot.repository.BookRepository;
@@ -49,7 +48,9 @@ public class BookServiceImpl implements BookService {
     public void deleteById(Long id) {
         bookRepository.deleteById(id);
     }
-    public List<BookDto> search(BookSearchParametres) {
-        return Collection.emptyList();
+
+    @Override
+    public List<BookDto> search(BookSearchParametersDto searchParameters) {
+        return Collections.emptyList();
     }
 }

@@ -1,18 +1,18 @@
 package mate.academy.spring.boot.repository;
 
 import lombok.RequiredArgsConstructor;
-import mate.academy.spring.boot.dto.BookSearchParametres;
+import mate.academy.spring.boot.dto.BookSearchParametersDto;
 import mate.academy.spring.boot.model.Book;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class BookSpecificationBuilder implements SpecificationBuilder<Book>{
+public class BookSpecificationBuilder implements SpecificationBuilder<Book> {
     private final SpecificationProviderManager<Book> bookSpecificationProviderManager;
 
     @Override
-    public Specification<Book> build(BookSearchParametres searchParametres) {
+    public Specification<Book> build(BookSearchParametersDto searchParametres) {
         Specification<Book> spec = Specification.where(null);
         if (searchParametres.titles() != null && searchParametres.titles().length > 0) {
             spec = spec.and(bookSpecificationProviderManager.getSpecificationProvider("title")

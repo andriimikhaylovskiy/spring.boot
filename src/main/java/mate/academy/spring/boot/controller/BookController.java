@@ -1,9 +1,8 @@
 package mate.academy.spring.boot.controller;
 
-import java.util.Collection;
 import java.util.List;
 import mate.academy.spring.boot.dto.BookDto;
-import mate.academy.spring.boot.dto.BookSearchParametres;
+import mate.academy.spring.boot.dto.BookSearchParametersDto;
 import mate.academy.spring.boot.dto.CreateBookRequestDto;
 import mate.academy.spring.boot.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +48,7 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    public List<BookDto> search(BookSearchParametres bookSearchParametres) {
-        return bookService.search(searchParametres);
+    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
+        return bookService.search(searchParameters);
     }
 }
