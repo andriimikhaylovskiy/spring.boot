@@ -8,14 +8,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CoverImageSpecificationProvider implements SpecificationProvider<Book> {
+
+    private static final String COVER_IMAGE_FIELD = "coverImage";
+
     @Override
     public String getKey() {
-        return "coverImage";
+        return COVER_IMAGE_FIELD;
     }
 
     public Specification<Book> getSpecification(String[] params) {
         return (root, query, criteriaBuilder) -> root
-                .get("coverImage").in(Arrays.stream(params)
-                        .toArray());
+                .get(COVER_IMAGE_FIELD).in(Arrays.asList(params));
     }
 }
+
