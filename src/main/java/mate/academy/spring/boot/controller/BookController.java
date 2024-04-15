@@ -2,6 +2,7 @@ package mate.academy.spring.boot.controller;
 
 import java.util.List;
 import mate.academy.spring.boot.dto.BookDto;
+import mate.academy.spring.boot.dto.BookSearchParametersDto;
 import mate.academy.spring.boot.dto.CreateBookRequestDto;
 import mate.academy.spring.boot.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,10 @@ public class BookController {
     @PostMapping
     public BookDto createBook(@RequestBody CreateBookRequestDto bookDto) {
         return bookService.createBook(bookDto);
+    }
+
+    @GetMapping("/search")
+    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
+        return bookService.search(searchParameters);
     }
 }
