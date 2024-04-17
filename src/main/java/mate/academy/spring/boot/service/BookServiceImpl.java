@@ -8,6 +8,7 @@ import mate.academy.spring.boot.dto.CreateBookRequestDto;
 import mate.academy.spring.boot.model.Book;
 import mate.academy.spring.boot.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +31,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<BookDto> getAll() {
+    public List<BookDto> getAll(java.awt.print.Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public List<BookDto> getAll(Pageable pageable) {
         throw new UnsupportedOperationException("Method not implemented");
     }
 

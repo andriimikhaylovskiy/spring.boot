@@ -1,5 +1,6 @@
 package mate.academy.spring.boot.service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import mate.academy.spring.boot.dto.BookDto;
 import mate.academy.spring.boot.dto.BookSearchParametersDto;
@@ -11,7 +12,9 @@ public interface BookService {
 
     List<Book> findAll();
 
-    List<BookDto> getAll();
+    List<BookDto> getAll(Pageable pageable);
+
+    List<BookDto> getAll(org.springframework.data.domain.Pageable pageable);
 
     BookDto getBookById(Long id);
 
