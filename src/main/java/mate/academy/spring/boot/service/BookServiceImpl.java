@@ -37,7 +37,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDto> getAll(Pageable pageable) {
-        throw new UnsupportedOperationException("Method not implemented");
+        return null;
     }
 
     @Override
