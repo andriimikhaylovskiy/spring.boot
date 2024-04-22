@@ -3,7 +3,6 @@ package mate.academy.spring.boot.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import java.awt.print.Pageable;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.spring.boot.dto.BookDto;
@@ -27,19 +26,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookController {
     private final BookService bookService;
 
-    @GetMapping
-    @Operation(summary = "Get all products", description = "Get a list of all available books")
-    public List<BookDto> getAll(Pageable pageable) {
-        return bookService.getAll(pageable);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete the book", description = "Delete the book by ID")
+    public void deleteBookById(@PathVariable Long id) {
         bookService.deleteById(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping
+    @Operation(summary = "Get books", description = "Get the book by ID")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
     }
@@ -52,6 +47,7 @@ public class BookController {
     }
 
     @GetMapping("/search")
+    @Operation(summary = "Search the book", description = "Search the book by parameters")
     public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
         return bookService.search(searchParameters);
     }
