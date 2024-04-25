@@ -7,11 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MapperConfig;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan
-@SpringBootApplication
 @Mapper(config = MapperConfig.class)
 public interface BookMapper {
     BookMapper INSTANCE = Mappers.getMapper(BookMapper.class);

@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Book management", description = "Endpoints for managing books")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/books")
+@RequestMapping(value = "/api/books")
 public class BookController {
     private final BookService bookService;
 
@@ -34,7 +34,7 @@ public class BookController {
         bookService.deleteById(id);
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     @Operation(summary = "Get books", description = "Get the book by ID")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
