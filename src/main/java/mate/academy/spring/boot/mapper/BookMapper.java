@@ -10,7 +10,6 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(config = MapperConfig.class)
 public interface BookMapper {
-    BookMapper INSTANCE = Mappers.getMapper(BookMapper.class);
 
     @Mapping(target = "id", ignore = true)
     Book createBookRequestDtoToBook(CreateBookRequestDto dto);
