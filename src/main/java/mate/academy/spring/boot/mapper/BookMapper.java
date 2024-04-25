@@ -1,12 +1,11 @@
 package mate.academy.spring.boot.mapper;
 
+import mate.academy.spring.boot.config.MapperConfig;
 import mate.academy.spring.boot.dto.BookDto;
 import mate.academy.spring.boot.dto.CreateBookRequestDto;
 import mate.academy.spring.boot.model.Book;
 import org.mapstruct.Mapper;
-import org.mapstruct.MapperConfig;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(config = MapperConfig.class)
 public interface BookMapper {
