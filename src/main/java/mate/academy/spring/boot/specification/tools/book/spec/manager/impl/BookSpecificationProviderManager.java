@@ -1,8 +1,10 @@
-package mate.academy.spring.boot.repository;
+package mate.academy.spring.boot.specification.tools.book.spec.manager.impl;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.spring.boot.model.Book;
+import mate.academy.spring.boot.specification.tools.SpecificationProvider;
+import mate.academy.spring.boot.specification.tools.SpecificationProviderManager;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor

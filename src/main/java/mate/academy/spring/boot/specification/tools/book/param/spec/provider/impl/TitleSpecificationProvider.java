@@ -1,8 +1,8 @@
-package mate.academy.spring.boot.repository.book;
+package mate.academy.spring.boot.specification.tools.book.param.spec.provider.impl;
 
 import java.util.Arrays;
 import mate.academy.spring.boot.model.Book;
-import mate.academy.spring.boot.repository.SpecificationProvider;
+import mate.academy.spring.boot.specification.tools.SpecificationProvider;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
