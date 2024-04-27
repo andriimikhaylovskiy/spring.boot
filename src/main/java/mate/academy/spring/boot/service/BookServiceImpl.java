@@ -42,6 +42,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<BookDto> getAllBooks() {
+        throw new UnsupportedOperationException("Method not implemented");
+    }
+
+    @Override
     public BookDto getBookById(Long id) {
         throw new UnsupportedOperationException("Method not implemented");
     }
