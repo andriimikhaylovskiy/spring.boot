@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Book management", description = "Endpoints for managing books")
 @RestController
-@RequestMapping(value = "/api/books")
+@RequestMapping("/books")
 public class BookController {
     private final BookService bookService;
 
@@ -64,5 +64,10 @@ public class BookController {
     @Operation(summary = "Get all books", description = "Get the all book")
     public List<BookDto> getAllBooks() {
         return bookService.getAllBooks();
+    }
+
+    @GetMapping
+    public List<BookDto> findAll(Pageable pageable) {
+        return bookService.findAll(pageable);
     }
 }

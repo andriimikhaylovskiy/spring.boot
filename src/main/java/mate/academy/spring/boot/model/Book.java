@@ -9,13 +9,11 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @SQLDelete(sql = "UPDATE book SET is_deleted = TRUE WHERE id = ?")
 @SQLRestriction("is_deleted = FALSE")
