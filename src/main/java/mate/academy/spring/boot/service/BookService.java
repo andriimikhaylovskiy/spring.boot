@@ -7,7 +7,7 @@ import mate.academy.spring.boot.dto.CreateBookRequestDto;
 import org.springframework.data.domain.Pageable;
 
 public interface BookService {
-    BookDto save(CreateBookRequestDto dto);
+    BookDto save(CreateBookRequestDto requestDto);
 
     List<BookDto> findAll(Pageable pageable);
 

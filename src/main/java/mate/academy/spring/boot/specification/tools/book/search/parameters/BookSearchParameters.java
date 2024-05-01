@@ -1,4 +1,6 @@
 package mate.academy.spring.boot.specification.tools.book.search.parameters;
 
-public record BookSearchParameters(String[] titles, String[] authors) {
+import java.util.List;
+
+public record BookSearchParameters(List<String> titles, List<String> authors) {
 }
