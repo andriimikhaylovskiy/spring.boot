@@ -11,6 +11,8 @@ public class BookDto {
     private String description;
     private String coverImage;
 
+    private boolean deleted;
+
     public Long getId() {
         return id;
     }
@@ -65,5 +67,13 @@ public class BookDto {
 
     public void setCoverImage(String coverImage) {
         this.coverImage = coverImage;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

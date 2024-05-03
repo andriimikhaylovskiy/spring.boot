@@ -11,7 +11,8 @@ import org.mapstruct.Mapping;
 public interface BookMapper {
 
     @Mapping(target = "id", ignore = true)
-    Book createBookRequestDtoToBook(CreateBookRequestDto dto);
+    @Mapping(target = "deleted", ignore = true)
+    // Book createBookRequestDtoToBook(CreateBookRequestDto dto);
 
     BookDto toDto(Book book);
 
