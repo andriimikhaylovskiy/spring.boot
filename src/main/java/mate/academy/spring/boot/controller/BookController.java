@@ -13,15 +13,15 @@ import mate.academy.spring.boot.service.BookService;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Book management", description = "Endpoints for managing books")
@@ -32,12 +32,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookController {
     private final BookService bookService;
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Operation(summary = "Delete the book",
-            description = "Delete the book by ID")
-    public void deleteBookById(@PathVariable @Positive Long id) {
-        bookService.deleteById(id);
+    @PostMapping
+    @Operation(summary = "Create a new book",
+            description = "Create a new book entity in the database")
+    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto requestDto) {
+        return bookService.save(requestDto);
     }
 
     @GetMapping("/{id}")
@@ -47,11 +46,17 @@ public class BookController {
         return bookService.getBookById(id);
     }
 
-    @PostMapping
-    @Operation(summary = "Create a new book",
-            description = "Create a new book entity in the database")
-    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto requestDto) {
-        return bookService.save(requestDto);
+    @GetMapping("/books")
+    @Operation(summary = "Get all books", description = "Get the all book")
+    public List<BookDto> getAll(@ParameterObject @PageableDefault Pageable pageable) {
+        return bookService.getAllBooks(pageable);
+    }
+
+    @GetMapping("/by-author")
+    @Operation(summary = "Get all books by an author",
+            description = "Get all books filtered by an author")
+    public List<BookDto> getAllByAuthor(@RequestParam String author) {
+        return bookService.getAllByAuthor(author);
     }
 
     @GetMapping("/search")
@@ -62,14 +67,18 @@ public class BookController {
         return bookService.search(searchParameters, pageable);
     }
 
-    @GetMapping("/books")
-    @Operation(summary = "Get all books", description = "Get the all book")
-    public List<BookDto> getAll(@ParameterObject @PageableDefault Pageable pageable) {
-        return bookService.getAllBooks();
+    @PutMapping("/{id}")
+    @Operation(summary = "Update a book by id",
+            description = "Update a book with new data by id in the database")
+    public BookDto updateBookById(@PathVariable @Positive Long id,
+                                  @RequestBody @Valid CreateBookRequestDto newRequestDto) {
+        return bookService.updateBook(id, newRequestDto);
     }
 
-    @GetMapping
-    public List<BookDto> findAll(Pageable pageable) {
-        return bookService.findAll(pageable);
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Delete the book",
+            description = "Delete the book by ID")
+    public void deleteBookById(@PathVariable @Positive Long id) {
+        bookService.deleteById(id);
     }
 }

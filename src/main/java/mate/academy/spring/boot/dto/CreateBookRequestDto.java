@@ -1,23 +1,13 @@
 package mate.academy.spring.boot.dto;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
-import lombok.Data;
+import org.hibernate.validator.constraints.ISBN;
 
-@Data
-public class CreateBookRequestDto {
-    @NotBlank
-    private String title;
-    @NotBlank
-    private String author;
-    @NotBlank
-    private String isbn;
-    @NotBlank
-    @Min(0)
-    private BigDecimal price;
-    @NotBlank
-    private String description;
-    @NotBlank
-    private String coverImage;
-}
+public record CreateBookRequestDto(@NotBlank String title,
+                                   @NotBlank String author,
+                                   @ISBN String isbn,
+                                   @NotNull @Positive BigDecimal price,
+                                   String description, String coverImage) {}
