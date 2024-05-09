@@ -78,14 +78,6 @@ public class BookServiceImpl implements BookService {
                 .toList();
     }
 
-    @Override
-    public List<BookDto> getAllBooks(Pageable pageable) {
-        return bookRepository.findAll(pageable)
-                .stream()
-                .map(bookMapper::toDto)
-                .toList();
-    }
-
     private String generateUniqueIsbn() {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < 13; i++) {

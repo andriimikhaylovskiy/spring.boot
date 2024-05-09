@@ -46,17 +46,18 @@ public class BookController {
         return bookService.getBookById(id);
     }
 
-    @GetMapping("/books")
-    @Operation(summary = "Get all books", description = "Get the all book")
-    public List<BookDto> getAll(@ParameterObject @PageableDefault Pageable pageable) {
-        return bookService.getAllBooks(pageable);
-    }
-
     @GetMapping("/by-author")
     @Operation(summary = "Get all books by an author",
             description = "Get all books filtered by an author")
     public List<BookDto> getAllByAuthor(@RequestParam String author) {
         return bookService.getAllByAuthor(author);
+    }
+
+    @GetMapping
+    @Operation(summary = "Get all books in parts",
+            description = "Get all the books in parts + using sorting")
+    public List<BookDto> getAll(@ParameterObject @PageableDefault Pageable pageable) {
+        return bookService.getAll(pageable);
     }
 
     @GetMapping("/search")
