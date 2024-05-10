@@ -1,4 +1,4 @@
-package mate.academy.spring.boot.exception;
+package mate.academy.spring.boot.exception.handler;
 
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
