@@ -1,4 +1,4 @@
-package mate.academy.spring.boot.dto;
+package mate.academy.spring.boot.dto.book;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
