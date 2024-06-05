@@ -1,9 +1,9 @@
 package mate.academy.spring.boot.service;
 
 import java.util.List;
-import mate.academy.spring.boot.dto.BookDto;
-import mate.academy.spring.boot.dto.BookSearchParametersDto;
-import mate.academy.spring.boot.dto.CreateBookRequestDto;
+import mate.academy.spring.boot.dto.book.BookDto;
+import mate.academy.spring.boot.dto.book.BookSearchParametersDto;
+import mate.academy.spring.boot.dto.book.CreateBookRequestDto;
 import org.springframework.data.domain.Pageable;
 
 public interface BookService {
