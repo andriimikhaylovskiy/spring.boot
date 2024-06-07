@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-    private static final String DEFAULT_ROLE = "ROLE_USER";
+    private static final String DEFAULT_ROLE = "USER";
     private final UserRepository userRepo;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;

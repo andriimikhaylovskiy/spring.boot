@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookController {
     private final BookService bookService;
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @Operation(summary = "Create a new book",
             description = "Create a new book entity in the database")
@@ -70,7 +70,7 @@ public class BookController {
         return bookService.search(searchParameters, pageable);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     @Operation(summary = "Update a book by id",
             description = "Update a book with new data by id in the database")
@@ -79,7 +79,7 @@ public class BookController {
         return bookService.updateBook(id, newRequestDto);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete the book",
             description = "Delete the book by ID")

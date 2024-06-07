@@ -3,9 +3,9 @@ package mate.academy.spring.boot.model;
 import java.util.Objects;
 
 public enum RoleName {
-    ROLE_USER("ROLE_USER"),
-    ROLE_MANAGER("ROLE_MANAGER"),
-    ROLE_ADMIN("ROLE_ADMIN");
+    ROLE_USER("USER"),
+    ROLE_MANAGER("MANAGER"),
+    ROLE_ADMIN("ADMIN");
 
     private final String roleName;
 
