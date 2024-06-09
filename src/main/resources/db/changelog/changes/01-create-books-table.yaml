@@ -42,7 +42,7 @@ databaseChangeLog:
                   type: varchar(255)
               - column:
                   name: isDeleted
-                  type: boolean
+                  type: bit
                   defaultValue: false
                   constraints:
                     nullable: false

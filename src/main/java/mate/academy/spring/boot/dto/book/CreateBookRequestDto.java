@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.ISBN;
 
 public record CreateBookRequestDto(@NotBlank String title,
                                    @NotBlank String author,
-                                   @ISBN String isbn,
+                                   @ISBN @NotBlank
+                                   String isbn,
                                    @NotNull @Positive BigDecimal price,
                                    String description, String coverImage) {}
