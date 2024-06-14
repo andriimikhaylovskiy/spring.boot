@@ -9,7 +9,6 @@ import mate.academy.spring.boot.dto.user.UserResponseDto;
 import mate.academy.spring.boot.exception.RegistrationException;
 import mate.academy.spring.boot.security.AuthenticationService;
 import mate.academy.spring.boot.service.UserService;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/auth")
-@Validated
 public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
