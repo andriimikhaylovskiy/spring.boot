@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Random;
 import lombok.RequiredArgsConstructor;
 import mate.academy.spring.boot.dto.book.BookDto;
+import mate.academy.spring.boot.dto.book.BookDtoWithoutCategoryIds;
 import mate.academy.spring.boot.dto.book.BookSearchParametersDto;
 import mate.academy.spring.boot.dto.book.CreateBookRequestDto;
 import mate.academy.spring.boot.exception.EntityNotFoundException;
 import mate.academy.spring.boot.mapper.BookMapper;
 import mate.academy.spring.boot.model.Book;
 import mate.academy.spring.boot.repository.BookRepository;
+import mate.academy.spring.boot.repository.category.CategoryRepository;
 import mate.academy.spring.boot.specification.tools.book.spec.builder.impl.BookSpecificationBuilder;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -23,6 +25,7 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
     private final Random myRandom;
     private final BookSpecificationBuilder bookSpecificationBuilder;
+    private final CategoryRepository categoryRepo;
 
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
@@ -30,6 +33,7 @@ public class BookServiceImpl implements BookService {
         if (book.getIsbn() == null || book.getIsbn().isBlank()) {
             book.setIsbn(generateUniqueIsbn());
         }
+        bookMapper.setCategories(book,requestDto);
         return bookMapper.toDto(bookRepository.save(book));
     }
 
@@ -77,6 +81,13 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAll(bookSpecification, pageable)
                 .stream()
                 .map(bookMapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<BookDtoWithoutCategoryIds> getAllByCategoryId(Long categoryId, Pageable pageable) {
+        return bookRepository.findAllByCategorySet_Id(categoryId, pageable).stream()
+                .map(bookMapper::toDtoWithoutCategories)
                 .toList();
     }
 
