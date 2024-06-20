@@ -15,6 +15,10 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(config = MapperConfig.class)
 public interface BookMapper {
+    @Mapping(target = "categorySet", ignore = true)
+    Book toModel(CreateBookRequestDto requestDto);
+
+    Book updateBookFromDto(@MappingTarget Book book, CreateBookRequestDto requestDto);
 
     @Mapping(target = "categoryIds", ignore = true)
     BookDto toDto(Book book);
@@ -38,9 +42,4 @@ public interface BookMapper {
                 .map(Category::getId)
                 .collect(Collectors.toSet()));
     }
-
-    @Mapping(target = "categorySet", ignore = true)
-    Book toModel(CreateBookRequestDto requestDto);
-
-    Book updateBookFromDto(@MappingTarget Book book, CreateBookRequestDto requestDto);
 }

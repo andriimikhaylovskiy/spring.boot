@@ -11,7 +11,6 @@ import mate.academy.spring.boot.exception.EntityNotFoundException;
 import mate.academy.spring.boot.mapper.BookMapper;
 import mate.academy.spring.boot.model.Book;
 import mate.academy.spring.boot.repository.BookRepository;
-import mate.academy.spring.boot.repository.category.CategoryRepository;
 import mate.academy.spring.boot.specification.tools.book.spec.builder.impl.BookSpecificationBuilder;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -25,7 +24,7 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
     private final Random myRandom;
     private final BookSpecificationBuilder bookSpecificationBuilder;
-    private final CategoryRepository categoryRepo;
+    //private final CategoryRepository categoryRepo;
 
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
