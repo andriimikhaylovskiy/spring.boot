@@ -24,7 +24,6 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
     private final Random myRandom;
     private final BookSpecificationBuilder bookSpecificationBuilder;
-    //private final CategoryRepository categoryRepo;
 
     @Override
     public BookDto save(CreateBookRequestDto requestDto) {
@@ -85,7 +84,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDtoWithoutCategoryIds> getAllByCategoryId(Long categoryId, Pageable pageable) {
-        return bookRepository.findAllByCategorySet_Id(categoryId, pageable).stream()
+        return bookRepository.findAllByCategoryId(categoryId, pageable).stream()
                 .map(bookMapper::toDtoWithoutCategories)
                 .toList();
     }

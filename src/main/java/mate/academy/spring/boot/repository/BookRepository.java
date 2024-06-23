@@ -13,5 +13,5 @@ public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificat
 
     @Query(value = "SELECT * FROM books b INNER JOIN books_categories bc ON "
             + "b.id = bc.book_id WHERE bc.category_id = :categoryId", nativeQuery = true)
-    List<Book> findAllByCategorySet_Id(@Param("categoryId") Long categoryId, Pageable pageable);
+    List<Book> findAllByCategoryId(@Param("categoryId") Long categoryId, Pageable pageable);
 }
