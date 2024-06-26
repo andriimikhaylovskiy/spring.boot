@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 import lombok.RequiredArgsConstructor;
 import mate.academy.spring.boot.dto.book.BookDto;
+import mate.academy.spring.boot.dto.book.BookDtoWithoutCategoryIds;
 import mate.academy.spring.boot.dto.book.BookSearchParametersDto;
 import mate.academy.spring.boot.dto.book.CreateBookRequestDto;
 import mate.academy.spring.boot.exception.EntityNotFoundException;
@@ -30,6 +31,7 @@ public class BookServiceImpl implements BookService {
         if (book.getIsbn() == null || book.getIsbn().isBlank()) {
             book.setIsbn(generateUniqueIsbn());
         }
+        bookMapper.setCategories(book,requestDto);
         return bookMapper.toDto(bookRepository.save(book));
     }
 
@@ -77,6 +79,13 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAll(bookSpecification, pageable)
                 .stream()
                 .map(bookMapper::toDto)
+                .toList();
+    }
+
+    @Override
+    public List<BookDtoWithoutCategoryIds> getAllByCategoryId(Long categoryId, Pageable pageable) {
+        return bookRepository.findAllByCategoryId(categoryId, pageable).stream()
+                .map(bookMapper::toDtoWithoutCategories)
                 .toList();
     }
 
