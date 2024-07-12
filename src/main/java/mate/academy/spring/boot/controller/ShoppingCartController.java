@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
-import mate.academy.spring.boot.dto.cartitem.CartItemDto;
 import mate.academy.spring.boot.dto.cartitem.CartItemQuantityRequestDto;
 import mate.academy.spring.boot.dto.cartitem.CreateCartItemRequestDto;
 import mate.academy.spring.boot.dto.shoppingcart.ShoppingCartDto;
@@ -37,10 +36,9 @@ public class ShoppingCartController {
     @PostMapping
     @Operation(summary = "Add a some book to the shopping cart",
             description = "Create a new cartItem entity in the database")
-    public CartItemDto createCartItem(@RequestBody @Valid CreateCartItemRequestDto requestDto,
+    public ShoppingCartDto createCartItem(@RequestBody @Valid CreateCartItemRequestDto requestDto,
                                       Authentication authentication) {
-        return cartItemService.save(requestDto,
-                shopCartService.getShopCart(getAuthenticatedUser(authentication).getId()));
+        return shopCartService.addBookToCart(user.getId(), requestDto);
     }
 
     @PreAuthorize("hasRole('USER')")
@@ -48,18 +46,18 @@ public class ShoppingCartController {
     @Operation(summary = "Retrieve authenticated user's shopping cart",
             description = "View owns shopping cart before placing an order")
     public ShoppingCartDto getShopCart(Authentication authentication) {
-        return shopCartService.getShopCartDto(getAuthenticatedUser(authentication).getId());
+        return shopCartService.getShopCartDto(getAuthenticatedUser(authentication));
     }
 
     @PreAuthorize("hasRole('USER')")
     @PutMapping("/cart-items/{id}")
     @Operation(summary = "Update the books quantity",
             description = "Update the books quantity in the shopping cart")
-    public CartItemDto updateBookQuantity(
+    public ShoppingCartDto updateBookQuantity(
             @PathVariable @Positive Long id,
             @RequestBody @Valid CartItemQuantityRequestDto requestDto,
             Authentication authentication) {
-        return cartItemService.updateQuantity(getAuthenticatedUser(authentication), id, requestDto);
+        return shopCartService.updateQuantity(getAuthenticatedUser(authentication), id, requestDto);
     }
 
     @PreAuthorize("hasRole('USER')")
@@ -68,7 +66,7 @@ public class ShoppingCartController {
             description = "Remove purchases by id from the shopping cart "
                     + "(physically - not mark it as deleted)")
     public void delete(@PathVariable @Positive Long id, Authentication authentication) {
-        cartItemService.deleteById(id, getAuthenticatedUser(authentication));
+        shopCartService.deleteById(id, getAuthenticatedUser(authentication));
     }
 
     private User getAuthenticatedUser(Authentication authentication) {

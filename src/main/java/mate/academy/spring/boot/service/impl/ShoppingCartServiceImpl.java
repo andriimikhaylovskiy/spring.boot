@@ -3,6 +3,8 @@ package mate.academy.spring.boot.service.impl;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import mate.academy.spring.boot.dto.cartitem.CartItemQuantityRequestDto;
+import mate.academy.spring.boot.dto.cartitem.CreateCartItemRequestDto;
 import mate.academy.spring.boot.dto.shoppingcart.ShoppingCartDto;
 import mate.academy.spring.boot.mapper.ShoppingCartMapper;
 import mate.academy.spring.boot.model.ShoppingCart;
@@ -32,5 +34,25 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Override
     public void createShoppingCart(User user) {
         shopCartRepo.save(shopCartMapper.mapUserToShopCart(user));
+    }
+
+    @Override
+    public ShoppingCartDto save(CreateCartItemRequestDto requestDto, ShoppingCart shopCart) {
+        return null;
+    }
+
+    @Override
+    public ShoppingCartDto updateQuantity(User authenticatedUser, Long cartItemId, CartItemQuantityRequestDto requestDto) {
+        return null;
+    }
+
+    @Override
+    public void deleteById(Long cartItemId, User authenticatedUser) {
+
+    }
+
+    @Override
+    public ShoppingCartDto getShopCartDto(User authenticatedUser) {
+        return null;
     }
 }

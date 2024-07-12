@@ -9,7 +9,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(config = MapperConfig.class, uses = CartItemMapper.class)
 public interface ShoppingCartMapper {
-    @Mapping(source = "user", target = "user")
     ShoppingCart mapUserToShopCart(User user);
 
     @Mapping(source = "user.id", target = "userId")
