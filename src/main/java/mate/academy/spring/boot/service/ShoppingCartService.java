@@ -9,13 +9,14 @@ import mate.academy.spring.boot.model.User;
 public interface ShoppingCartService {
     ShoppingCart getShopCart(Long userId);
 
-    ShoppingCartDto getShopCartDto(Long userId);
+    //ShoppingCartDto getShopCartDto(Long userId);
 
     void createShoppingCart(User user);
 
-    ShoppingCartDto save(CreateCartItemRequestDto requestDto, ShoppingCart shopCart);
+    ShoppingCartDto save(CreateCartItemRequestDto requestDto, User authenticatedUser);
 
-    ShoppingCartDto updateQuantity(User authenticatedUser, Long cartItemId, CartItemQuantityRequestDto requestDto);
+    ShoppingCartDto updateQuantity(User authenticatedUser, Long cartItemId,
+                                   CartItemQuantityRequestDto requestDto);
 
     void deleteById(Long cartItemId, User authenticatedUser);
 

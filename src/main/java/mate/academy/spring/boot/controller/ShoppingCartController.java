@@ -9,7 +9,6 @@ import mate.academy.spring.boot.dto.cartitem.CartItemQuantityRequestDto;
 import mate.academy.spring.boot.dto.cartitem.CreateCartItemRequestDto;
 import mate.academy.spring.boot.dto.shoppingcart.ShoppingCartDto;
 import mate.academy.spring.boot.model.User;
-import mate.academy.spring.boot.service.CartItemService;
 import mate.academy.spring.boot.service.ShoppingCartService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -29,7 +28,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cart")
 @Validated
 public class ShoppingCartController {
-    private final CartItemService cartItemService;
     private final ShoppingCartService shopCartService;
 
     @PreAuthorize("hasRole('USER')")
@@ -37,8 +35,9 @@ public class ShoppingCartController {
     @Operation(summary = "Add a some book to the shopping cart",
             description = "Create a new cartItem entity in the database")
     public ShoppingCartDto createCartItem(@RequestBody @Valid CreateCartItemRequestDto requestDto,
-                                      Authentication authentication) {
-        return shopCartService.addBookToCart(user.getId(), requestDto);
+                                          Authentication authentication) {
+        User authenticatedUser = getAuthenticatedUser(authentication);
+        return shopCartService.save(requestDto, authenticatedUser);
     }
 
     @PreAuthorize("hasRole('USER')")
